@@ -1,6 +1,15 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+
+  outputFileTracingIncludes: {
+    "/*": [
+      "./node_modules/.prisma/client/**",
+      "./node_modules/@prisma/client/**",
+    ],
+  },
+
   async headers() {
     return [
       {
@@ -14,4 +23,5 @@ const nextConfig = {
     ];
   },
 };
+
 export default nextConfig;
