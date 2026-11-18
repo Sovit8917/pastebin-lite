@@ -1,0 +1,22 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Paste {
+  id        String    @id
+  content   String
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  expiresAt DateTime? @map("expires_at") @db.Timestamptz(3)
+  maxViews  Int?      @map("max_views")
+  viewCount Int       @default(0) @map("view_count")
+
+  @@index([expiresAt])
+  @@map("pastes")
+}

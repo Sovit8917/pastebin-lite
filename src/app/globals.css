@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --ink: #0b1220;
+  --muted: #536074;
+  --subtle: #8793a6;
+  --line: #e6eaf1;
+  --line-strong: #d3dae5;
+  --gutter: #f7f9fc;
+  --accent: #2457e6;
+  --accent-hover: #1b47c6;
+  --accent-soft: #eef3ff;
+  --accent-ink: #ffffff;
+  --danger: #b42318;
+  --danger-soft: #fef3f2;
+  --success: #067647;
+  --success-soft: #ecfdf3;
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-feature-settings: "cv11", "ss01", "calt";
+  letter-spacing: -0.006em;
+}
+
+::selection {
+  background: #d6e2ff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium
+      transition-[background-color,border-color,box-shadow,transform,color] duration-150
+      active:translate-y-px disabled:pointer-events-none disabled:opacity-60;
+  }
+  .btn-md {
+    @apply h-10 px-4;
+  }
+  .btn-sm {
+    @apply h-8 px-3 text-[13px];
+  }
+  .btn-primary {
+    @apply bg-accent text-accent-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_1px_2px_rgba(16,24,40,0.12)]
+      hover:bg-accent-hover;
+  }
+  .btn-secondary {
+    @apply border border-line-strong bg-panel text-ink shadow-card hover:border-[#bcc6d6] hover:bg-gutter;
+  }
+  .btn-ghost {
+    @apply text-muted hover:bg-gutter hover:text-ink;
+  }
+
+  .field {
+    @apply h-10 w-full rounded-lg border border-line-strong bg-panel px-3 text-sm text-ink shadow-card
+      transition-[border-color,box-shadow] duration-150 placeholder:text-subtle
+      hover:border-[#bcc6d6] focus:border-accent focus:shadow-focus focus:outline-none;
+  }
+
+  .chip {
+    @apply inline-flex h-7 items-center rounded-full border border-line-strong bg-panel px-2.5 text-xs font-medium
+      text-muted transition-colors duration-150 hover:border-[#bcc6d6] hover:text-ink;
+  }
+  .chip[aria-pressed="true"] {
+    @apply border-[#bcd0ff] bg-accent-soft text-accent;
+  }
+
+  .card {
+    @apply rounded-xl border border-line bg-panel shadow-raised;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
